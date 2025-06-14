@@ -7,6 +7,11 @@ from zipfile import ZipFile
 
 app = Flask(__name__)
 
+# Write the cookie file once when app starts
+if 'YOUTUBE_COOKIES' in os.environ:
+    with open("cookies.txt", "w") as f:
+        f.write(os.environ['YOUTUBE_COOKIES'])
+
 @app.route('/')
 def index():
     return '''
